@@ -1,0 +1,54 @@
+.ring {
+  position: relative;
+  display: inline-block;
+}
+
+svg.circleSVG {
+  overflow: visible;
+}
+
+.pulseStroke {
+  transform-origin: 50% 50%;
+  animation: ringGlow 3.9s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px rgba(255,255,255,0.06));
+}
+
+.pulseMarker {
+  animation: markerPulse 1.2s ease-in-out infinite;
+}
+
+/* Speed up near the end */
+.panicMid {
+  .pulseStroke { animation-duration: 2s; }
+  .pulseMarker { animation-duration: 0.8s; }
+}
+
+.panicEnd {
+  .pulseStroke { animation-duration: 0.5s; }
+  .pulseMarker { animation-duration: 0.35s; }
+}
+
+/* Stop everything when locked/resolving */
+.noPulse {
+  .pulseStroke,
+  .pulseMarker {
+    animation: none !important;
+  }
+
+  .pulseStroke {
+    filter: none !important;
+    opacity: 1 !important;
+  }
+}
+
+@keyframes ringGlow {
+  0%   { opacity: 0.55; filter: drop-shadow(0 0 6px rgba(255,255,255,0.06)); }
+  50%  { opacity: 1;    filter: drop-shadow(0 0 18px rgba(255,255,255,0.19)); }
+  100% { opacity: 0.55; filter: drop-shadow(0 0 6px rgba(255,255,255,0.06)); }
+}
+
+@keyframes markerPulse {
+  0%   { opacity: 0.3; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.3; }
+}

@@ -1,0 +1,295 @@
+@use "sass:math";
+@use "sass:string";
+@use "@/styles/mq" as mq;
+
+// Match your vibe
+$star-color: #b99d05;
+
+// Loader should be cheaper than the main scene
+$space-height-desktop: 520px;
+$space-height-mobile: 820px;
+
+// keep horizontal spread how you like it
+$spread-x-desktop: 2200;
+$spread-y-desktop: 1400;
+$spread-x-mobile: 420;
+
+// vertical spread MUST cover your animated height
+$spread-y-desktop: $space-height-desktop;
+$spread-y-mobile: $space-height-mobile;
+
+// Fewer stars than your main layout (but still looks similar)
+$stars-small-count-desktop: 260;
+$stars-medium-count-desktop: 90;
+$stars-big-count-desktop: 30;
+
+$stars-small-count-mobile: 70;
+$stars-medium-count-mobile: 28;
+$stars-big-count-mobile: 10;
+
+$stars-micro-count-mobile: 120;
+$stars-micro-count-desktop: 420;
+
+$stars-huge-count-mobile: 4;
+$stars-huge-count-desktop: 10;
+
+// Replace your function with this
+@function rand-range($min, $max) {
+  @return $min + math.random($max - $min);
+}
+
+@function multiple-box-shadow-centered($count, $spread-x, $spread-y) {
+  $half-x: math.floor($spread-x / 2);
+  $half-y: math.floor($spread-y / 2);
+
+  $value: "#{rand-range(-$half-x, $half-x)}px #{rand-range(-$half-y, $half-y)}px #{$star-color}";
+
+  @for $i from 2 through $count {
+    $value: "#{$value}, #{rand-range(-$half-x, $half-x)}px #{rand-range(-$half-y, $half-y)}px #{$star-color}";
+  }
+
+  @return string.unquote($value);
+}
+
+$spread-x-desktop: 2200;
+$spread-y-desktop: 1400;
+
+$spread-x-mobile: 420;
+$spread-y-mobile: 820px;
+
+$anim-height-desktop: 520px;
+$anim-height-mobile: 820px;
+
+// Use centered shadows everywhere (since we’ll center the dot layer)
+$shadows-small-mobile:  multiple-box-shadow-centered($stars-small-count-mobile, $spread-x-mobile, $spread-y-mobile);
+$shadows-medium-mobile: multiple-box-shadow-centered($stars-medium-count-mobile, $spread-x-mobile, $spread-y-mobile);
+$shadows-big-mobile:    multiple-box-shadow-centered($stars-big-count-mobile, $spread-x-mobile, $spread-y-mobile);
+
+$shadows-small-desktop:  multiple-box-shadow-centered($stars-small-count-desktop, $spread-x-desktop, $spread-y-desktop);
+$shadows-medium-desktop: multiple-box-shadow-centered($stars-medium-count-desktop, $spread-x-desktop, $spread-y-desktop);
+$shadows-big-desktop:    multiple-box-shadow-centered($stars-big-count-desktop, $spread-x-desktop, $spread-y-desktop);
+
+$shadows-micro-mobile:  multiple-box-shadow-centered($stars-micro-count-mobile, $spread-x-mobile, $spread-y-mobile);
+$shadows-micro-desktop: multiple-box-shadow-centered($stars-micro-count-desktop, $spread-x-desktop, $spread-y-desktop);
+
+$shadows-huge-mobile:  multiple-box-shadow-centered($stars-huge-count-mobile, $spread-x-mobile, $spread-y-mobile);
+$shadows-huge-desktop: multiple-box-shadow-centered($stars-huge-count-desktop, $spread-x-desktop, $spread-y-desktop);
+/* wrapper */
+.starfield {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: transparent;
+  z-index: 0;
+  pointer-events: none;
+  height: 100vh;
+  opacity: 0;
+  //animation: starfieldFadeIn 900ms ease-out forwards;
+  display: none;
+}
+
+/* shared */
+/* shared */
+.stars0,
+.stars,
+.stars2,
+.stars3,
+.stars4 {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: transparent;
+  overflow: hidden;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  &::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: transparent;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    background: transparent;
+    transform: translateX(-50%);
+  }
+}
+
+.stars0 {
+  width: 0.5px;
+  height: 0.5px;
+  opacity: 0.25;
+  box-shadow: $shadows-micro-mobile;
+  animation: animStarMobile 60s linear infinite;
+
+  &::after {
+    width: 0.5px;
+    height: 0.5px;
+    box-shadow: $shadows-micro-mobile;
+  }
+}
+
+/* Mobile baseline */
+.stars {
+  width: 1px;
+  height: 1px;
+  opacity: 0.65;
+  box-shadow: $shadows-small-mobile;
+  animation: animStarMobile 46s linear infinite;
+
+  &::after {
+    width: 1px;
+    height: 1px;
+    box-shadow: $shadows-small-mobile;
+  }
+}
+
+.stars2 {
+  width: 2px;
+  height: 2px;
+  opacity: 0.55;
+  box-shadow: $shadows-medium-mobile;
+  animation: animStarMobile 92s linear infinite;
+
+  &::after {
+    width: 2px;
+    height: 2px;
+    box-shadow: $shadows-medium-mobile;
+  }
+}
+
+.stars3 {
+  width: 3px;
+  height: 3px;
+  opacity: 0.45;
+  box-shadow: $shadows-big-mobile;
+  animation: animStarMobile 138s linear infinite;
+
+  &::after {
+    width: 3px;
+    height: 3px;
+    box-shadow: $shadows-big-mobile;
+  }
+}
+
+
+.stars4 {
+  width: 4px;
+  height: 4px;
+  opacity: 0.35;
+  box-shadow: $shadows-huge-mobile;
+  animation: animStarMobile 160s linear infinite;
+
+  &::after {
+    width: 4px;
+    height: 4px;
+    box-shadow: $shadows-huge-mobile;
+  }
+}
+
+
+@keyframes animStarMobile {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-$space-height-mobile); }
+}
+
+/* Desktop upgrade: duplicate via ::after for seamless loop */
+@include mq.up(desktop) {
+  .stars0,
+  .stars,
+  .stars2,
+  .stars3,
+  .stars4 {
+    will-change: transform;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: $space-height-desktop;
+      left: 0;
+      background: transparent;
+    }
+  }
+
+  .stars0 {
+    box-shadow: $shadows-micro-desktop;
+    animation: animStarDesktop 42s linear infinite;
+
+    &::after {
+      box-shadow: $shadows-micro-desktop;
+    }
+  }
+
+
+  .stars {
+    box-shadow: $shadows-small-desktop;
+    animation: animStarDesktop 34s linear infinite;
+
+    &::after {
+      width: 1px;
+      height: 1px;
+      box-shadow: $shadows-small-desktop;
+    }
+  }
+
+  .stars2 {
+    box-shadow: $shadows-medium-desktop;
+    animation: animStarDesktop 68s linear infinite;
+
+    &::after {
+      width: 2px;
+      height: 2px;
+      box-shadow: $shadows-medium-desktop;
+    }
+  }
+
+  .stars3 {
+    box-shadow: $shadows-big-desktop;
+    animation: animStarDesktop 102s linear infinite;
+
+    &::after {
+      width: 3px;
+      height: 3px;
+      box-shadow: $shadows-big-desktop;
+    }
+  }
+
+  .stars4 {
+    box-shadow: $shadows-huge-desktop;
+    animation: animStarDesktop 120s linear infinite;
+
+    &::after {
+      box-shadow: $shadows-huge-desktop;
+    }
+  }
+
+  @keyframes animStarDesktop {
+    from { transform: translateY(0); }
+    to   { transform: translateY(-$space-height-desktop); }
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .stars,
+  .stars2,
+  .stars3 {
+    animation: none !important;
+  }
+
+  .stars::after,
+  .stars2::after,
+  .stars3::after {
+    content: none !important;
+  }
+}
+
+@keyframes starfieldFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}

@@ -1,0 +1,111 @@
+@use "@/styles/mq" as mq;
+
+/* ===== Tables ===== */
+.tableCard {
+  padding: 12px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+.tableCardWinners { flex: 3; }
+.tableCardTickets { flex: 2; }
+
+.tableTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.tableSub {
+  font-size: 12px;
+  opacity: 0.7;
+  font-weight: 600;
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.thead,
+.tr {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+
+.thead {
+  font-size: 12px;
+  opacity: 0.7;
+  font-weight: 700;
+  padding: 0 4px 6px 4px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.tr {
+  padding: 2px 4px;
+  font-size: 12px;
+  @include mq.up(desktop) {
+    font-size: 14px;
+  }
+}
+
+.pkCell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rollover {
+  /* defaults so it never breaks */
+  --hue: 210;
+  --intensity: 0.9;
+
+  /* derived colors */
+  --c1: hsla(var(--hue), 95%, 70%, calc(0.22 * var(--intensity)));
+  --c2: hsla(var(--hue), 95%, 60%, calc(0.10 * var(--intensity)));
+  --ring: hsla(var(--hue), 95%, 70%, calc(0.32 * var(--intensity)));
+  --glow: hsla(var(--hue), 95%, 65%, calc(0.40 * var(--intensity)));
+
+  position: relative;
+  border-radius: 16px;
+  padding: 12px;
+
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background:
+          radial-gradient(120px 120px at 30% 30%, var(--c1), transparent 60%),
+          radial-gradient(180px 180px at 70% 70%, var(--c2), transparent 62%),
+          rgba(255, 255, 255, 0.05);
+
+  box-shadow:
+          0 10px 26px rgba(0, 0, 0, 0.35),
+          0 0 28px var(--glow);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+
+  @include mq.up(desktop) {
+    font-size: 1rem;
+  }
+
+
+  /* subtle colored ring */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    pointer-events: none;
+    box-shadow: 0 0 0 1px var(--ring) inset;
+    opacity: 0.9;
+  }
+}

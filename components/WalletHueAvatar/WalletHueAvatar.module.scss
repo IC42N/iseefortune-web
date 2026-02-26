@@ -1,0 +1,105 @@
+@use "@/styles/mq" as mq;
+
+.avatar {
+  display: grid;
+  place-content: center;
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+
+  /* Base color + subtle depth */
+
+  background: hsl(var(--hue), var(--sat), calc(var(--light) - 3%));
+  @include mq.up(desktop) {
+    background:
+      radial-gradient(
+          120% 120% at 20% 20%,
+          hsla(var(--hue), var(--sat), calc(var(--light) + 10%), 0.9),
+          hsla(var(--hue), var(--sat), var(--light), 0.95) 45%,
+          hsla(var(--hue), var(--sat), calc(var(--light) - 8%), 1) 100%
+      );
+  }
+}
+
+.avatar::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+  @include mq.up(desktop) {
+    background: radial-gradient(
+        circle at 30% 25%,
+        rgba(255, 255, 255, 0.25),
+        rgba(255, 255, 255, 0.05) 40%,
+        rgba(0, 0, 0, 0.15) 100%
+    );
+  }
+}
+
+/* subtle highlight so it looks "designed", not flat */
+.avatar::after {
+  content: "";
+  position: absolute;
+  inset: -60%;
+  transform: translateX(-30%) rotate(-15deg);
+  opacity: 0.6;
+  pointer-events: none;
+
+  @include mq.up(desktop) {
+    background:
+            linear-gradient(
+                            120deg,
+                            rgba(255, 255, 255, 0.00) 30%,
+                            rgba(255, 255, 255, 0.25) 45%,
+                            rgba(255, 255, 255, 0.00) 60%
+            );
+    animation: shimmer 6s ease-in-out infinite;
+  }
+}
+
+//.ring {
+//  animation: glowPulse 5s ease-in-out infinite;
+//}
+//
+//@keyframes glowPulse {
+//  0%, 100% {
+//    box-shadow:
+//            0 0 0 1px hsla(var(--hue), var(--sat), 78%, 0.5),
+//            0 0 10px hsla(var(--hue), var(--sat), 65%, 0.4),
+//            0 6px 14px rgba(0, 0, 0, 0.22);
+//  }
+//  50% {
+//    box-shadow:
+//            0 0 0 1px hsla(var(--hue), var(--sat), 82%, 0.65),
+//            0 0 14px hsla(var(--hue), var(--sat), 70%, 0.55),
+//            0 6px 14px rgba(0, 0, 0, 0.22);
+//  }
+//}
+
+.text {
+  position: relative;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.97);
+  text-shadow:
+          0 1px 1px rgba(0, 0, 0, 0.4),
+          0 0 6px rgba(0, 0, 0, 0.25);
+  user-select: none;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-40%) rotate(-15deg);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateX(10%) rotate(-15deg);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateX(-40%) rotate(-15deg);
+    opacity: 0.35;
+  }
+}

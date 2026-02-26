@@ -1,0 +1,104 @@
+@use "sass:math";
+@use "sass:string";
+// -----------------------------------------------------------------------------
+// Starfield configuration
+// -----------------------------------------------------------------------------
+$space-height: 600px;
+$star-color: #676767;
+
+$stars-small-count: 700;
+$stars-medium-count: 200;
+$stars-big-count: 100;
+
+
+// -----------------------------------------------------------------------------
+// Generate multiple box-shadows (compile-time randomness)
+// -----------------------------------------------------------------------------
+@function multiple-box-shadow($count) {
+  $value: "#{math.random(2000)}px #{math.random(2000)}px #{$star-color}";
+
+  @for $i from 2 through $count {
+    $value: "#{$value}, #{math.random(2000)}px #{math.random(2000)}px #{$star-color}";
+  }
+
+  @return string.unquote($value);
+}
+
+$shadows-small:  multiple-box-shadow($stars-small-count);
+$shadows-medium: multiple-box-shadow($stars-medium-count);
+$shadows-big:    multiple-box-shadow($stars-big-count);
+
+
+
+// -----------------------------------------------------------------------------
+// Star layers
+// -----------------------------------------------------------------------------
+.stars,
+.stars2,
+.stars3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: transparent;
+  will-change: transform;
+  pointer-events: none;
+  &::after {
+    content: '';
+    position: absolute;
+    top: $space-height;
+    left: 0;
+    background: transparent;
+  }
+}
+
+.stars {
+  width: 1px;
+  height: 1px;
+  box-shadow: $shadows-small;
+  animation: animStar 50s linear infinite;
+
+  &::after {
+    width: 1px;
+    height: 1px;
+    box-shadow: $shadows-small;
+  }
+}
+
+.stars2 {
+  width: 2px;
+  height: 2px;
+  box-shadow: $shadows-medium;
+  animation: animStar 100s linear infinite;
+
+  &::after {
+    width: 2px;
+    height: 2px;
+    box-shadow: $shadows-medium;
+  }
+}
+
+.stars3 {
+  width: 3px;
+  height: 3px;
+  box-shadow: $shadows-big;
+  animation: animStar 150s linear infinite;
+
+  &::after {
+    width: 3px;
+    height: 3px;
+    box-shadow: $shadows-big;
+  }
+}
+
+
+// -----------------------------------------------------------------------------
+// Animation
+// -----------------------------------------------------------------------------
+@keyframes animStar {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-$space-height);
+  }
+}

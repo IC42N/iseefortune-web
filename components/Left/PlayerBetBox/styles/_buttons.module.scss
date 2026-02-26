@@ -1,0 +1,129 @@
+@use "../../../../styles/mq" as mq;
+
+
+.connectWalletBox {
+  width: 100%;
+  margin-bottom: 6px;
+  .wallet-adapter-dropdown {
+    width: 300px;
+  }
+}
+
+
+.actions {
+  gap: 7px;
+  margin: 16px 0 4px;
+  display: flex;
+  justify-content: center;
+}
+
+.primaryBtn {
+  /* Derived from #0e1625 + #bfb47b */
+  --bg: hsl(255, 36%, 24%);
+  --bg-hi: hsl(255, 42%, 30%);
+  --border: hsl(255, 55%, 46%);
+
+  position: relative;
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+
+  background:
+          linear-gradient(
+                          180deg,
+                          var(--bg-hi),
+                          var(--bg)
+          );
+
+  color: rgba(255, 255, 255, 0.96);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.15px;
+
+  cursor: pointer;
+  user-select: none;
+
+  box-shadow:
+          0 4px 10px rgba(0, 0, 0, 0.45),
+          inset 0 1px 0 rgba(255, 255, 255, 0.10);
+
+  transition:
+          background 140ms ease,
+          box-shadow 140ms ease,
+          transform 120ms ease,
+          border-color 140ms ease;
+}
+.primaryBtn:hover:not(:disabled) {
+  background:
+          linear-gradient(
+                          180deg,
+                          hsl(255, 48%, 34%),
+                          hsl(255, 38%, 26%)
+          );
+
+  border-color: hsl(255, 70%, 58%);
+
+  box-shadow:
+          0 6px 16px rgba(0, 0, 0, 0.55),
+          inset 0 1px 0 rgba(255, 255, 255, 0.12);
+
+  transform: translateY(-1px);
+}
+
+.primaryBtn:active:not(:disabled) {
+  transform: translateY(0) scale(0.99);
+  box-shadow:
+          0 3px 8px rgba(0, 0, 0, 0.6) inset;
+}
+
+.primaryBtn:focus-visible {
+  outline: none;
+  box-shadow:
+          0 0 0 3px rgba(191, 180, 123, 0.35),
+          0 4px 12px rgba(0, 0, 0, 0.45);
+}
+.primaryBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background:
+          linear-gradient(
+                          180deg,
+                          hsl(255, 20%, 22%),
+                          hsl(255, 18%, 18%)
+          );
+  border-color: hsl(255, 24%, 30%);
+  box-shadow: none;
+}
+
+@keyframes spinRing {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes sweepShine {
+  0%   { transform: translateX(-55%) rotate(10deg); opacity: 0.0; }
+  15%  { opacity: 0.85; }
+  55%  { opacity: 0.35; }
+  100% { transform: translateX(55%) rotate(10deg); opacity: 0.0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primaryBtn::before,
+  .primaryBtn::after {
+    animation: none !important;
+  }
+}
+
+
+.secondaryBtn {
+  width: 100%;
+  color: #ffffffd9;
+  cursor: pointer;
+  background: rgba(125, 69, 145, 0.7);
+  border: 1px solid #4d1b61;
+  padding: 10px 6px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15px;
+}

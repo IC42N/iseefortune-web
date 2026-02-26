@@ -1,0 +1,151 @@
+/*
+  Enter and leave animations can use different
+  durations and timing functions.
+*/
+.mob-enter-active {
+    transition: all 0.3s ease-out;
+}
+
+.mob-leave-active {
+    transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.mob-enter-from,
+.mob-leave-to {
+    transform: translateY(-20px);
+    opacity: 0;
+}
+
+
+.slide-fade-enter-active {
+    transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+    transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+    transform: translateY(-30px);
+    opacity: 0;
+}
+
+//Slide in by just fade out
+.slide-fade2-enter-active {
+    transition: all 0.3s ease-out;
+}
+.slide-fade2-leave-active {
+    transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade2-enter-from {
+    transform: translateY(30px);
+}
+.slide-fade2-leave-to {
+    opacity: 0;
+}
+
+.view-leave-active {
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease;
+}
+
+.view-enter-active {
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease;
+    transition-delay: 0.5s;
+}
+
+.view-enter, .view-leave-to {
+    opacity: 0;
+}
+
+.view-enter-to, .view-leave {
+    opacity: 1;
+}
+
+
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.4s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+
+//Accordion animation
+.accordion-enter-active {
+    -moz-transition-duration: 0.3s;
+    -webkit-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -moz-transition-timing-function: ease-in;
+    -webkit-transition-timing-function: ease-in;
+    -o-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+ }
+
+ .accordion-leave-active {
+    -moz-transition-duration: 0.3s;
+    -webkit-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -moz-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    -webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+ }
+
+ .accordion-enter-to, .accordion-leave {
+    max-height: 100px;
+    overflow: hidden;
+ }
+
+ .accordion-enter, .accordion-leave-to {
+    overflow: hidden;
+    max-height: 0;
+ }
+
+//No animation
+ .none-enter-active,
+ .none-leave-active {
+   transition: opacity 0.2s ease;
+ }
+ .none-enter-from,
+ .none-leave-to {
+   opacity: 1;
+ }
+
+//Mobile nave animation
+.mobile-enter-active {
+    transition: all 0.3s ease-out;
+}
+
+.mobile-leave-active {
+    transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.mobile-enter-from,
+.mobile-leave-to {
+    transform: translateX(20px);
+    opacity: 0;
+}
+
+
+.challenge-enter-active {
+    transition: all 0.3s ease-out;
+}
+
+.challenge-leave-active {
+    transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.challenge-enter-from,
+.challenge-leave-to {
+    transform: rotateX(90deg);
+    opacity: 0;
+}
+
+

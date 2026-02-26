@@ -1,0 +1,182 @@
+@use "@/styles/mq" as mq;
+@use "@/styles/common/variables" as v;
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.62);
+  backdrop-filter: blur(10px);
+}
+
+.modal {
+  width: min(720px, 100%);
+  border-radius: 6px;
+  border: 1px solid v.$gold2;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+  transform: translateY(10px) scale(0.98);
+  opacity: 0;
+  animation: popIn 220ms ease-out forwards;
+}
+
+@keyframes popIn {
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 28px 28px 0 28px;
+  @include mq.up(desktop) {
+    padding: 38px 38px 0 38px;
+  }
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.badgeDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: rgba(255, 210, 120, 0.9);
+  box-shadow: 0 0 18px rgba(255, 210, 120, 0.45);
+}
+
+.close {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.92);
+  border-radius: 12px;
+  padding: 8px 10px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.close:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.body {
+  padding: 12px 28px 28px 28px;
+  color: rgba(245, 252, 255, 0.9);
+  @include mq.up(desktop) {
+    padding: 12px 38px 38px 38px;
+  }
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 650;
+  margin: 10px 0 6px 0;
+  color: v.$gold2;
+}
+
+.text {
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(245, 252, 255, 0.82);
+  margin: 0;
+}
+
+.list {
+  margin: 12px 0 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.item {
+  font-size: 14px;
+  color: rgba(245, 252, 255, 0.86);
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.icon {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  margin-top: 1px;
+}
+
+.ok {
+  background: rgba(80, 200, 120, 0.18);
+  border-color: rgba(80, 200, 120, 0.45);
+  color: rgb(120, 255, 170);
+  box-shadow: 0 0 18px rgba(80, 200, 120, 0.35);
+}
+
+.warn {
+  background: rgba(255, 80, 80, 0.18);
+  border-color: rgba(255, 80, 80, 0.45);
+  color: rgb(255, 140, 140);
+  box-shadow: 0 0 18px rgba(255, 80, 80, 0.35);
+}
+
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+  padding: 0 18px 18px 18px;
+}
+
+.btn {
+  border-radius: 14px;
+  padding: 10px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(245, 252, 255, 0.92);
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.btnPrimary {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.btnPrimary:hover {
+  background: rgba(255, 255, 255, 0.20);
+}
+
+/* Mobile tightening */
+@media (max-width: 480px) {
+  .title { font-size: 18px; }
+  .footer { justify-content: stretch; }
+  .btn { width: 100%; text-align: center; }
+}

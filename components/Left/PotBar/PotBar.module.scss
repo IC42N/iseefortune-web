@@ -1,0 +1,109 @@
+@use "@/styles/mq" as mq;
+
+.potBar {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  background: #111a2c;
+  @include mq.up(desktop) {
+    background: rgba(18, 27, 45, 0.62);
+  }
+}
+.potBox {
+  padding: 6px;
+  display: inline-block;
+  position: relative;
+  transform-origin: center;
+  will-change: transform;
+  z-index: 0;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+.pot {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.bets {
+  font-size: 14px;
+  opacity: 0.45;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.pulse {
+  animation: potPulse 650ms ease-out;
+}
+
+@keyframes potPulse {
+  0%   { transform: scale(1); filter: drop-shadow(0 0 0 rgba(255,255,255,0)); }
+  30%  { transform: scale(1.03); filter: drop-shadow(0 0 10px rgba(255,255,255,0.25)); }
+  100% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(255,255,255,0)); }
+}
+
+.delta {
+  position: absolute;
+  right: -20px;
+  top: 30%;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+
+  color: #7CFF9B;
+  transform: translateY(-50%);
+  font-size: 9px;
+  font-weight: 700;
+  opacity: 0.95;
+  pointer-events: none;
+  animation: deltaPop 1100ms ease-out forwards;
+  will-change: transform, opacity;
+  text-shadow: 0 0 6px rgba(124, 255, 155, 0.35);
+  z-index: 300;
+}
+
+.arrow {
+  font-size: 10px;
+  line-height: 1;
+  transform: translateY(1px);
+  filter: drop-shadow(0 0 4px rgba(124, 255, 155, 0.6));
+}
+
+@keyframes deltaPop {
+  0% {
+    transform: translate(0px, -45%) scale(0.95);
+    opacity: 0;
+  }
+
+  15% {
+    transform: translate(0px, -50%) scale(1);
+    opacity: 1;
+  }
+
+  70% {
+    transform: translate(0px, -58%) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(0px, -75%) scale(0.98);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse, .delta { animation: none !important; }
+}

@@ -1,0 +1,176 @@
+@use "@/styles/mq" as mq;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 14px;
+
+  background:
+          radial-gradient(1200px 800px at 20% 20%, rgba(118, 255, 221, 0.12), transparent 60%),
+          radial-gradient(900px 700px at 80% 30%, rgba(170, 120, 255, 0.14), transparent 55%),
+          radial-gradient(900px 700px at 50% 90%, rgba(255, 161, 90, 0.12), transparent 55%),
+          rgba(0, 0, 0, 0.35); // ← big change
+
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  animation: overlayFadeIn 220ms ease-out forwards;
+  will-change: opacity;
+  @include mq.up(desktop) {
+    padding: 20px;
+  }
+}
+
+@keyframes overlayFadeIn {
+  to { opacity: 1; }
+}
+
+.modal {
+  position: relative;
+  width: min(780px, 100%);
+  border-radius: 18px;
+  padding: 1px;
+
+  background: linear-gradient(180deg, rgba(18, 18, 22, 0.92), rgba(10, 10, 14, 0.92));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  //box-shadow: rgb(10 175 230) 0 0 7px;
+
+  /* initial (matches blurToFocus "from") */
+  opacity: 0;
+  transform: translateY(6px) scale(0.985);
+  filter: blur(2px);
+  will-change: transform, opacity, filter;
+
+  animation: blurToFocus 0.4s ease-out forwards;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    z-index: -1;
+
+    background: linear-gradient(
+                    var(--angle, 0deg),
+                    #daf6ff,
+                    #abd1de,
+                    #53acc9,
+                    #67aec5,
+                    #daf6ff,
+                    #e4aafa
+    );
+
+    animation: rotate-hue 4s linear infinite, borderGlow 2s ease infinite;
+    filter: blur(1px);
+    pointer-events: none;
+    @include mq.up(desktop) {
+      inset: -2px;
+    }
+  }
+}
+
+.modalInner {
+  background: #0e1625;
+  border-radius: 16px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+//Clouds
+.clouds {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.cloudBox {
+  position: absolute;
+  width: 120px;
+  height: 100px;
+  @include mq.up(desktop) {
+    width: 180px;
+    height: 140px;
+  }
+}
+.topLeft {
+  top: 0;
+  left: 0;
+
+}
+.topRight {
+  top: 0;
+  right: 0;
+}
+
+.bottomLeft {
+  bottom: 0;
+  left: 0;
+
+}
+.bottomRight {
+  bottom: 0;
+  right: 0;
+}
+
+
+//Hands
+.hands {
+  display: none;
+  @include mq.up(desktop) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.handBox {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+}
+
+.leftHand {
+  top: 2px;
+  left: 85px;
+  rotate: 60deg;
+  @include mq.up(desktop) {
+    top: 9px;
+    left: 92px;
+  }
+}
+.rightHand {
+  right: 85px;
+  top: 2px;
+  rotate: -60deg;
+  @include mq.up(desktop) {
+    top: 9px;
+    right: 92px;
+  }
+}
+
+
+
+
+
+.close {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+
+  transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+  position: absolute;
+  z-index: 3;
+  right: 5px;
+  &:hover {
+    transform: translateY(-1px);
+  }
+}

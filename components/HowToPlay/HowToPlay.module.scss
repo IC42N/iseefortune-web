@@ -1,0 +1,540 @@
+@use "@/styles/mq" as mq;
+@use "@/styles/variables" as v;
+.page {
+
+  color: rgba(255, 255, 255, 0.92);
+  @include mq.up(desktop) {
+    padding: 48px 16px 80px;
+  }
+}
+
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.header {
+  padding: 0 14px 8px;
+  text-align: center;
+}
+
+
+.title {
+  margin: 0 0 12px;
+  font-size: 18px;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  color: v.$gold2;
+  @include mq.up(desktop) {
+    font-size: 22px;
+  }
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 70ch;
+  @include mq.up(desktop) {
+    font-size: 15px;
+  }
+}
+
+
+.section {
+  margin-top: 18px;
+}
+
+//.h2 {
+//  margin: 22px 0 12px;
+//  font-size: 18px;
+//  letter-spacing: -0.01em;
+//  text-align: center;
+//  color: #ff0091;
+//  @include mq.up(desktop) {
+//    margin: 28px 0 12px;
+//  }
+//}
+
+.steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 6px;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  @include mq.up(desktop) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+}
+
+.step {
+  border-radius: 12px;
+  background: #18547038;
+  border: 1px solid rgba(255,255,255,0.10);
+  padding: 14px 14px 12px;
+  @include mq.up(desktop) {
+    padding: 12px 14px 12px;
+    border-radius: 16px;
+  }
+}
+
+.stepTop {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stepNum {
+  width: 28px;
+  height: 28px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.stepTitle {
+  font-size: 15px;
+  font-weight: 680;
+  letter-spacing: -0.01em;
+}
+
+.stepBody {
+  margin: 6px 0 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.78);
+  font-weight: 100;
+  opacity: 0.8;
+  @include mq.up(desktop) {
+    margin: 8px 0 0;
+  }
+}
+
+.callout {
+  margin-top: 12px;
+  border-radius: 16px;
+  padding: 14px 22px;
+  background: #7b207333;
+  border: 1px solid #db95f71f;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  flex-direction: column;
+  @include mq.up(desktop) {
+    flex-direction: row;
+  }
+}
+
+.calloutTitle {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.calloutBody {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.80);
+  line-height: 1.45;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.card {
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(255,255,255,0.10);
+  padding: 14px;
+}
+
+.cardTitle {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.cardBody {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+
+
+
+
+.h3 {
+  margin: 0 0 10px;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  opacity: 0.92;
+}
+
+.rulesGrid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 10px;
+  @include mq.up(desktop) {
+    gap: 10px;
+  }
+}
+
+.ruleCard,
+.ruleCardWide {
+  border-radius: 16px;
+  background: #18547038;
+  border: 1px solid rgba(255,255,255,0.10);
+  padding: 14px;
+}
+
+.ruleCardWide {
+  margin-top: 10px;
+}
+
+.ruleTitle {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.ruleBody {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.76);
+  opacity: 0.8;
+  font-weight: 100;
+}
+
+.dividerSoft {
+  height: 1px;
+  width: 100%;
+  background: rgba(255,255,255,0.10);
+  margin: 14px 0;
+}
+
+@media (max-width: 760px) {
+  .rulesGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.miniMeta {
+  margin-top: 24px;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  color: v.$gold2;
+  @include mq.up(desktop) {
+    font-size: 12px;
+  }
+}
+
+.lede {
+  margin: 0 0 14px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.78);
+  @include mq.up(desktop) {
+    padding: 14px 6px;
+    text-align: left;
+  }
+}
+
+.lede2 {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.78);
+  padding: 0 4px;
+  font-weight: 100;
+  @include mq.up(desktop) {
+    text-align: left;
+    font-size: 1rem;
+    padding: 0;
+  }
+}
+
+.prompt {
+  color: #f1e71c
+}
+
+
+.list {
+  padding: 0 26px;
+  @include mq.up(desktop) {
+    padding: 0 34px;
+  }
+}
+
+
+
+.fairGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 10px;
+  @include mq.up(desktop) {
+    gap: 10px;
+  }
+}
+
+.fairCard {
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(255,255,255,0.10);
+  padding: 14px;
+}
+
+.fairTitle {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.fairBody {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.linksRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 24px;
+  justify-content: center;
+  @include mq.up(desktop) {
+    gap: 8px;
+  }
+}
+
+.linkBtn,
+.linkBtnGhost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  transition: transform 0.08s ease, background 0.12s ease, border-color 0.12s ease;
+}
+
+.linkBtn {
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.14);
+  color: rgba(255,255,255,0.92);
+}
+
+.linkBtnGhost {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.82);
+}
+
+.linkBtn:hover,
+.linkBtnGhost:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.12);
+}
+
+.note {
+  margin-top: 12px;
+  padding: 12px 14px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: rgba(255,255,255,0.72);
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .fairGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.slogan {
+  font-style: italic;
+  text-align: center;
+  font-size: 0.9rem;
+  margin: 22px 0 10px;
+  color: v.$gold2;
+}
+
+.footer {
+  padding: 0 4px;
+}
+
+.footerDivider {
+  height: 1px;
+  width: 100%;
+  background: rgba(255,255,255,0.10);
+  margin: 18px 0 12px;
+}
+.footerContent {
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  text-transform: uppercase;
+  color: #999;
+}
+
+.footerNote {
+  margin: 0;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+/* Responsive */
+@media (max-width: 760px) {
+
+  .quickFacts {
+    grid-template-columns: 1fr;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+/* =========================
+   Tabs (append-only)
+   ========================= */
+
+.tabs {
+  margin-top: 16px;
+  padding: 0; /* matches header padding vibe */
+  @include mq.up(desktop) {
+    padding: 0 18px;
+  }
+}
+
+.tabList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: center;
+  @include mq.up(desktop) {
+    gap: 8px;
+  }
+}
+
+/* Tab button styling */
+.tabBtn {
+  appearance: none;
+  padding: 6px 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  transition: transform 0.08s ease, background 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  opacity: 0.4;
+  @include mq.up(desktop) {
+    padding: 6px 10px;
+  }
+}
+
+.tabBtn:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.10);
+}
+
+.tabBtn:active {
+  transform: translateY(0);
+  opacity: 1;
+  color:   v.$gold2;;
+}
+
+/* Active tab */
+.tabBtnActive {
+  color:   v.$gold2;
+  opacity: 1;
+}
+
+/* Small helpers text under tabs (optional) */
+.tabMeta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+  opacity: 0.70;
+  font-size: 12px;
+  text-align: center;
+}
+
+.tabMetaDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.tabMetaText code {
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* The fading content area */
+.tabPanel {
+  margin-top: 12px;
+  animation: tabPanelFade 220ms ease-out;
+  will-change: opacity, transform;
+  @include mq.up(desktop) {
+    margin: 12px 20px 0
+  }
+}
+
+/* Smooth fade-in */
+@keyframes tabPanelFade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .tabBtn,
+  .tabPanel {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Optional: if you ever use anchor links to headings, this prevents “under header” feel */
+.anchorOffset {
+  scroll-margin-top: 90px;
+}

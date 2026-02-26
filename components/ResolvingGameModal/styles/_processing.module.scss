@@ -1,0 +1,51 @@
+@use "../../../styles/mq" as mq;
+@use "../../../styles/common/variables" as v;
+
+.resolvingNumberBx {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.circleImgBx {
+  --circleBg: rgba(104, 31, 120, 0.22);
+
+  display: grid;
+  place-items: center;
+  width: 130px;
+  height: 130px;
+  position: absolute;
+  border-radius: 50%;
+  background:  var(--circleBg);
+  box-shadow: 5px 6px 15px 5px #0e1832;
+}
+
+
+.modal--win {
+  --circleBg: rgba(31, 120, 59, 0.22);
+}
+
+.modal--lose {
+  --circleBg: #a33232a3;
+}
+
+.digit {
+  font-size: 72px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  position: absolute;
+  color: v.$gold2
+}
+
+.processingWrap {
+  margin-top: 160px;
+  text-align: center;
+}
+
+.processingLead {
+  color: v.$gold2;
+  opacity: 0.85;
+  line-height: 1.4;
+}
+

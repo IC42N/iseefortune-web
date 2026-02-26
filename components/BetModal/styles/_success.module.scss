@@ -1,0 +1,64 @@
+@use "../../../styles/common/variables" as v;
+@use "@/styles/mq" as mq;
+
+.successPane {
+  padding: 18px;
+  background: url("/SVG/stars.svg") no-repeat center center;
+  background-size: cover;
+}
+
+.successCard {
+  padding: 32px 16px;
+  display: grid;
+  gap: 14px;
+  text-align: center;
+  position: relative;
+  @include mq.up(desktop) {
+    padding: 18px 56px;
+  }
+}
+
+
+
+.ballBox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  place-items: center;
+  width: 80px;
+}
+
+
+
+
+
+.successText {
+  display: grid;
+  gap: 6px;
+}
+
+.successTitle {
+  color: v.$gold2;
+  font-weight: 950;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  font-size: 18px;
+}
+
+.successSub {
+  font-size: 13px;
+  line-height: 1.35;
+  color: rgba(255,255,255,0.70);
+}
+
+.successCloseBtn {
+  margin-top: 10px;
+  opacity: 0.7;
+  cursor: pointer;
+  font-size: 0.7rem;
+  font-weight: 100;
+}
+

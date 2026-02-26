@@ -1,0 +1,88 @@
+@use "@/styles/mq" as mq;
+@use "@/styles/common/variables" as v;
+
+.wrap {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #101c2e; /* prevents white flash */
+  z-index: 99999;
+
+  opacity: 1;
+  transition: opacity 180ms ease;
+}
+
+.fadeOut {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.card {
+  width: min(420px, calc(100vw - 32px));
+  border-radius: 18px;
+  padding: 18px 18px 14px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  width: 120px;
+  height: 120px;
+}
+
+.title {
+  font-size: 22px;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.subtitle {
+  margin-top: 6px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.70);
+}
+
+.bar {
+  margin-top: 14px;
+  height: 8px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.10);
+  width: 120px;
+}
+
+.fill {
+  height: 100%;
+  border-radius: 999px;
+  background: v.$gold2;
+  display: block;
+  width: 0;
+}
+
+.meta {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.ready {
+  animation: flash 0.14s infinite;
+}
+@keyframes flash {
+   100%, 0% { opacity: 1; }
+   50% { opacity: 0.75; }
+ }

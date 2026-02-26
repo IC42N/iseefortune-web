@@ -1,0 +1,121 @@
+@use "@/styles/mq" as mq;
+
+.box {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  width: 100%;
+  @include mq.up(desktop)  {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+}
+
+/* Individual stat tile */
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 10px;
+  border-radius: 10px;
+  position: relative;
+  background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.045),
+      rgba(255, 255, 255, 0.02)
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+
+  transition: transform 120ms ease, border-color 120ms ease;
+
+  @include mq.up(desktop)  {
+    padding: 14px 12px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  &:hover {
+    transform: translateY(-1px);
+    border-color: rgba(255, 255, 255, 0.14);
+  }
+}
+
+.label {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  opacity: 0.65;
+  margin-bottom: 3px;
+  @include mq.up(desktop)  {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    margin-bottom: 6px;
+  }
+
+}
+
+.value {
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: #dec067;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+  text-transform: uppercase;
+  opacity: 0.95;
+}
+
+.chips {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.dash {
+  opacity: 0.6;
+}
+
+.chip {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px; // "bubble square"
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: -0.02em;
+
+  /* consistent number color system via --hue/--intensity */
+  background: radial-gradient(
+    120% 120% at 30% 20%,
+    hsla(var(--hue), 95%, 70%, calc(var(--intensity) * 0.45)),
+    hsla(var(--hue), 90%, 45%, calc(var(--intensity) * 0.22))
+  );
+
+  border: 1px solid hsla(var(--hue), 90%, 70%, calc(var(--intensity) * 0.35));
+  box-shadow:
+          0 6px 16px rgba(0, 0, 0, 0.25),
+          inset 0 1px 0 rgba(255, 255, 255, 0.10);
+
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+  transition: transform 120ms ease, border-color 120ms ease;
+  @include mq.up(desktop)  {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+}
+
+.chip:hover {
+  transform: translateY(-1px);
+  border-color: hsla(var(--hue), 95%, 80%, calc(var(--intensity) * 0.55));
+}

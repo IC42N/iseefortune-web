@@ -1,0 +1,30 @@
+@use "@/styles/mq" as mq;
+@use "@/styles/common/variables" as v;
+
+/* System announcement: centered pill */
+.newGameMessage {
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #f2edb9;
+  background: #0f9750c2;
+  border: 2px solid #80f18a;
+  border-radius: 5px;
+  align-self: center;
+  padding: 18px 26px;
+  font-size: 11px;
+  font-weight: 900;
+}
+.newGameInner {
+  position: relative;
+}
+
+
+
+
+
+.divider {
+  padding: 14px 0;
+  position: relative;
+}
+
+

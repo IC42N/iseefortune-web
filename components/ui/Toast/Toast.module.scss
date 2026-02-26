@@ -1,0 +1,179 @@
+@use "@/styles/mq" as mq;
+/* Toast.module.scss */
+
+.viewport {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 9999;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  width: min(360px, calc(100vw - 32px));
+}
+
+.motionWrap {
+  will-change: transform, opacity, filter;
+}
+
+/* =========================================================
+   Base Toast (single container)
+   ========================================================= */
+.toast {
+  --bg: #0f1115;
+  --border: rgba(255, 255, 255, 0.08);
+  --accent: #888;
+
+  position: relative;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+
+  padding: 14px 16px;
+
+  background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.02)),
+          var(--bg);
+
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 14px;
+
+  color: #eaeaf0;
+
+  box-shadow:
+          0 8px 24px rgba(0, 0, 0, 0.45),
+          inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+  @include mq.up(desktop) {
+    backdrop-filter: blur(12px);
+  }
+}
+
+/* Optional: subtle “premium” sheen on enter */
+.toast::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+                  120deg,
+                  transparent,
+                  rgba(255, 255, 255, 0.08),
+                  transparent
+  );
+  transform: translateX(-100%);
+  animation: sheen 1.2s ease-out;
+  pointer-events: none;
+}
+
+@keyframes sheen {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* =========================================================
+   Inner layout (no extra card styling here)
+   ========================================================= */
+.content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.text {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.2;
+  letter-spacing: 0.2px;
+  color: #ffffff;
+}
+
+.description {
+  margin-top: 2px;
+  font-size: 12.5px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.75);
+  word-break: break-word;
+}
+
+.close {
+  all: unset;
+  cursor: pointer;
+
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+  line-height: 1;
+
+  color: rgba(255, 255, 255, 0.6);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.95);
+  }
+}
+
+/* =========================================================
+   Types
+   ========================================================= */
+
+.toast[data-type="success"] {
+  --accent: #2dd4bf;
+
+  background:
+          linear-gradient(180deg, rgba(45, 212, 191, 0.12), rgba(45, 212, 191, 0.02)),
+          #0b1c1a;
+
+  border-color: rgba(45, 212, 191, 0.35);
+
+  box-shadow:
+          0 10px 28px rgba(0, 0, 0, 0.45),
+          0 0 0 1px rgba(45, 212, 191, 0.15),
+          inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.toast[data-type="error"] {
+  --accent: #f87171;
+
+  background:
+          linear-gradient(180deg, rgba(248, 113, 113, 0.12), rgba(248, 113, 113, 0.02)),
+          #1b0c0c;
+
+  border-color: rgba(248, 113, 113, 0.4);
+
+  box-shadow:
+          0 10px 28px rgba(0, 0, 0, 0.5),
+          0 0 0 1px rgba(248, 113, 113, 0.18),
+          inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.toast[data-type="info"] {
+  --accent: #60a5fa;
+
+  background:
+          linear-gradient(180deg, rgba(96, 165, 250, 0.12), rgba(96, 165, 250, 0.02)),
+          #0c1320;
+
+  border-color: rgba(96, 165, 250, 0.35);
+
+  box-shadow:
+          0 10px 28px rgba(0, 0, 0, 0.45),
+          0 0 0 1px rgba(96, 165, 250, 0.15),
+          inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}

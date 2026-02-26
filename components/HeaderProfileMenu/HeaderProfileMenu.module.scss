@@ -1,0 +1,97 @@
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 38px;
+  padding: 0 10px;
+
+  color: white;
+  cursor: pointer;
+}
+
+.avatar {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.triggerIcon {
+  opacity: 0.9;
+}
+
+.positioner {
+  z-index: 100;
+}
+
+.popup {
+  width: 240px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(10, 12, 16, 0.96);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
+  padding: 8px;
+}
+
+.arrow {
+  width: 20px;
+  height: 10px;
+  top: -8px;
+}
+
+.arrowFill {
+  fill: rgba(10, 12, 16, 0.96);
+}
+
+.arrowOuterStroke,
+.arrowInnerStroke {
+  fill: rgba(255, 255, 255, 0.14);
+}
+
+.item {
+  width: 100%;
+  border-radius: 10px;
+  padding: 10px 10px;
+  user-select: none;
+  outline: none;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.92);
+  background: transparent;
+}
+
+.item:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.item[data-highlighted] {
+  background: rgba(255, 255, 255, 0.10);
+}
+
+.link {
+  display: block;
+  width: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.separator {
+  height: 1px;
+  margin: 8px 6px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.walletRow {
+  padding: 6px;
+}
+
+.walletBtn {
+  width: 100%;
+}
+
+.walletPlaceholder {
+  height: 38px;
+  border-radius: 10px;
+  margin: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}

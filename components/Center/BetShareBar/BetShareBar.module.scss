@@ -1,0 +1,135 @@
+@use "../../../styles/mq" as mq;
+
+.root {
+  width: 100%;
+  padding: 0;
+}
+
+.bar {
+  width: 100%;
+
+  display: flex;
+  gap: 2px;
+}
+
+.sliceWrap {
+  flex: 1 1 0;
+  min-width: 0;
+  --intensity: 0.2;
+  --hue: 50;
+}
+
+.sliceWrap button {
+  width: 100%;
+}
+
+.slice {
+  height: 100%;
+  border-radius: 23px;
+  padding: 8px 9px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  // colorful “glass” base (hue-based)
+  background:
+    radial-gradient(
+        120% 140% at 20% 15%,
+        hsla(var(--hue), 90%, calc(26% + var(--intensity) * 26%), 0.62),
+        rgba(255, 255, 255, 0.06) 75%,
+        rgba(0, 0, 0, 0.14) 100%
+    );
+
+  //box-shadow:
+  //        0 0 0 1px rgba(0, 0, 0, 0.22) inset,
+  //        0 10px 30px rgba(0, 0, 0, 0.22),
+  //        0 0 calc(10px + var(--intensity) * 34px)
+  //        hsla(var(--hue), 95%, 62%, calc(0.06 + var(--intensity) * 0.22));
+
+  animation: shine 950ms ease-out;
+
+  @include mq.up(desktop) {
+    padding: 8px 11px;
+    backdrop-filter: blur(10px);
+  }
+
+}
+
+
+@keyframes shine {
+  0% { transform: scale(1); }
+  25% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+.slice::before {
+  content: "";
+  position: absolute;
+  inset: -40% -20%;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    hsla(var(--hue), 100%, 80%, calc(0.07 + var(--intensity) * 0.18)) 45%,
+    transparent 70%
+  );
+  transform: translateX(-30%) rotate(8deg);
+  animation: sweep 950ms ease-out;
+  pointer-events: none;
+}
+
+@keyframes sweep {
+  0%   { transform: translateX(-35%) rotate(8deg); opacity: 0.0; }
+  15%  { opacity: 0.9; }
+  100% { transform: translateX(35%) rotate(8deg); opacity: 0.0; }
+}
+
+.num {
+  display: none;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+  color: hsla(var(--hue), 100%, calc(85% + var(--intensity) * 10%), 0.45);
+  text-shadow:
+          0 0 calc(6px + var(--intensity) * 18px)
+          hsla(var(--hue), 100%, 65%, calc(0.08 + var(--intensity) * 0.25));
+  @include mq.up(desktop) {
+    font-size: 18px;
+    display: block;
+  }
+}
+
+.meta {
+  display: none;
+  @include mq.up(desktop) {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    opacity: 0.3;
+  }
+}
+
+.bets {
+  font-size: 14px;
+  opacity: calc(0.72 + var(--intensity) * 0.22);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.percent {
+  font-size: 12px;
+  opacity: calc(0.45 + var(--intensity) * 0.25);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.note {
+  margin-top: 10px;
+  font-size: 12px;
+  opacity: 0.6;
+  text-align: center;
+}

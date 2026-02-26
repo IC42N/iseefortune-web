@@ -1,0 +1,125 @@
+@use "../../../styles/mq" as mq;
+
+.root {
+  width: 100%;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  position: relative;
+  height: 400px;
+  align-items: center;
+  @include mq.up(desktop) {
+    height: 420px;
+  }
+}
+
+.clouds {
+  position: absolute;
+  inset: 0;           /* cover the entire box */
+  pointer-events: none;
+  z-index: 0;         /* behind content */
+}
+
+
+.clouds {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  .cloud {
+    position: absolute; // required for fill
+    width: 280px;
+    height: 120px;
+  }
+}
+
+.cloudBox {
+  position: absolute;
+  width: 135px;
+  height: 100px;
+  opacity: 0.35;
+  @include mq.up(desktop) {
+    width: 180px;
+    height: 140px;
+  }
+}
+
+.topLeft { top: 0; left: 0; }
+.topRight { top: 0; right: 0; }
+.bottomLeft { bottom: 0; left: 0; }
+.bottomRight { bottom: 0; right: 0; }
+
+
+.cloudImg {
+  object-fit: contain;
+}
+
+
+.col {
+  position: absolute;
+  z-index: 1;
+}
+
+
+.label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+.slots {
+  font-size: 50px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.time {
+  font-size: 14px;
+  opacity: 0.45;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+.graphCenter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  align-items: center;
+}
+
+
+.timerWrap {
+  margin-top: 0;
+}
+
+.centerValue {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.timerSkeleton {
+  width: 140px;
+  height: 140px;
+  border-radius: 999px;
+  border: 10px solid rgba(0, 0, 0, 0.06);
+}
+.warpBg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  overflow: hidden;
+  width: auto;
+  height: auto;
+  background: #0e1625;
+
+}

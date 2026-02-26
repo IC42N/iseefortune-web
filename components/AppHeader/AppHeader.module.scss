@@ -1,0 +1,264 @@
+@use "../../styles/mq" as mq;
+@use "../../styles/common/variables" as v;
+
+.header {
+  display: grid;
+  grid-template-areas:
+    "top"
+    "sub";
+  grid-template-rows: auto auto;
+}
+
+
+.subHeader {
+  grid-area: sub;
+}
+
+.top {
+  grid-area: top;
+
+  display: grid;
+  grid-template-areas: "left center right";
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 0 12px;
+  //background: linear-gradient(180deg, rgba(127, 148, 173, 0.22), rgba(14, 22, 37, 0.0)); // slate hint
+  height: 58px;
+
+  @include mq.up(desktop) {
+    padding: 0 26px;
+    grid-template-columns: 2fr 1fr 2fr;
+  }
+
+}
+.subHeader {
+  grid-area: sub;
+
+  /* mobile default: visible */
+  position: relative;
+  height: 28px;
+  overflow: hidden;
+  z-index: 1;
+  margin: 2px 0 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 12px;
+  background: #6a1581;
+
+  @include mq.up(desktop) {
+    background: none;
+    height: 26px;
+  }
+  .gameMeta {
+    display: flex;
+    @include mq.up(desktop) {
+
+      display: none;
+    }
+  }
+}
+.subHeader::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.2;
+  z-index: -1;
+  @include mq.up(desktop) {
+    background: #031c2d url("/SVG/moons.svg") center;
+  }
+
+
+
+}
+
+.left {
+  grid-area: left;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.gameMeta {
+  /* mobile: the subHeader version */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  width: 100%;
+  max-width: 520px;
+
+  @include mq.up(desktop) {
+    gap: 14px;
+  }
+}
+
+
+.titleSub {
+  display: none;
+  @include mq.up(desktop) {
+    margin-top: 4px;
+    display: block;
+  }
+}
+
+
+.title {
+  font-family: var(--font-title), sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  font-size: 18px;
+  line-height: 1;
+  color: v.$gold2;
+}
+.sub {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+
+
+.center {
+  display: none;
+  position: relative;
+  @include mq.up(desktop) {
+    gap: 16px;
+    padding: 0 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* Left & right angled lines */
+.center::before,
+.center::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 120px;
+  height: 1px;
+
+  transform-origin: center;
+}
+
+/* Left line */
+.center::before {
+  right: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.25)
+  );
+  transform: translateY(-50%) skewX(-20deg);
+}
+
+/* Right line */
+.center::after {
+  left: 100%;
+  background: linear-gradient(
+    to left,
+    transparent,
+    rgba(255, 255, 255, 0.25)
+  );
+  transform: translateY(-50%) skewX(20deg);
+}
+
+.right {
+  grid-area: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 14px;
+  @include mq.up(desktop) {
+    gap: 14px;
+  }
+}
+
+.topWalletBox {
+  width: 150px;
+}
+
+.link {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+
+
+.tierWrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.select {
+  border: 1px none;
+  background: none;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  @include mq.up(desktop) {
+    height: 34px;
+    padding: 0 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    background: #0e1625;
+    font-weight: 600;
+    outline: none;
+    font-size: 12px;
+  }
+}
+
+.select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.pill {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.epoch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+  @include mq.up(desktop) {
+    font-size: 18px;
+  }
+}
+
+
+.walletBtn {
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.walletPlaceholder {
+  width: 160px;   // roughly WalletMultiButton width
+  height: 36px;
+}
+
+.walletBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+

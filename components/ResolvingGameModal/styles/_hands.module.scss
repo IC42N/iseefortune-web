@@ -1,0 +1,48 @@
+@use "../../../styles/mq" as mq;
+
+.handsBox {
+  position: relative;
+  max-width: 390px;
+  margin: 20px auto;
+  top: 82px;
+}
+
+.hands {
+  position: absolute;
+  inset: 0;
+}
+
+.handBox {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+
+  /* IMPORTANT: rotation is now controlled via CSS var */
+  transform: translateY(0px) rotate(var(--rot));
+  animation:
+          hand-hover 3.6s ease-in-out infinite,
+          hand-fade 3.6s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Set the rotation vars here */
+.leftHand {
+  top: 9px;
+  left: 50px;
+  --rot: 60deg;
+  animation-delay: 0s;
+}
+
+.rightHand {
+  top: 9px;
+  right: 50px;
+  --rot: -60deg;
+  animation-delay: 0.1s;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .handBox {
+    animation: none;
+  }
+}

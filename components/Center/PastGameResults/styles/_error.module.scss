@@ -1,0 +1,20 @@
+/* ===== Error / Empty ===== */
+.errorRow,
+.emptyRow {
+  padding: 10px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.errorRow {
+  padding: 32px;
+  text-align: center;
+}
+
+
+.errorTitle {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.errorMsg { opacity: 0.75; }

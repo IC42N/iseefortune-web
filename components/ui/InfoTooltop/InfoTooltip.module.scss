@@ -1,0 +1,54 @@
+@use "@/styles/mq" as mq;
+
+.hideOnMobile {
+  display: none;
+  @include mq.up(desktop) {
+    display: inline-block;
+    position: absolute;
+  }
+}
+
+.trigger {
+  position: absolute;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  margin-left: 3px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  color: #ccc;
+  font-size: 10px;
+  font-weight: 600;
+  display: inline-grid;
+  place-items: center;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  bottom: 1px;
+}
+
+.popup {
+  max-width: min(260px, calc(100vw - 24px));
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: #142f41;
+  color: #fff;
+  font-size: 12px;
+  line-height: 1.4;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  position: relative;
+  z-index: 10050;
+}
+
+.Title {
+  font-size: 14px;
+  color: #ffc527;
+  margin-bottom: 4px;
+}
+
+.arrow {
+  fill: #111;
+}
+

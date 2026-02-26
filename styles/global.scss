@@ -1,0 +1,49 @@
+@use "./resets";
+@use "./fonts";
+@use "variables";
+@use "./wallet";
+
+
+/* Global layout rules */
+html,
+body {
+  height: 100%;
+  background: #0E1625;
+}
+
+body {
+  font-family: var(--font-primary), serif;
+  font-weight: 600;
+  margin: 0;
+  color: #E6EDF6;
+}
+
+.root {
+  isolation: isolate;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+p {
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-weight: 600;
+}
+
+.font-regular { font-weight: 400; }
+.font-medium  { font-weight: 500; }
+.font-semibold{ font-weight: 600; }
+.font-bold    { font-weight: 700; }
+.font-extrabold { font-weight: 800; }
+
+

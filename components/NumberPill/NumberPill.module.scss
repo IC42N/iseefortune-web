@@ -1,0 +1,22 @@
+.pill {
+  --sat: 85%;
+  --light: 58%;
+
+  background: hsl(var(--hue, 50), var(--sat), var(--light));
+  color: #0b0b0b;
+
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+
+  box-shadow:
+          0 0 0 1px hsl(var(--hue, 50), 90%, 25%),
+          0 6px 14px hsla(var(--hue, 50), 90%, 50%, 0.25);
+}

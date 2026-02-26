@@ -1,0 +1,49 @@
+.trigger {
+  /* This makes the trigger look like your existing .stat row */
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.popup {
+  max-width: min(320px, calc(100vw - 24px));
+  padding: 12px 12px;
+  border-radius: 14px;
+  background: rgba(10, 10, 14, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(10px);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.title {
+  font-weight: 650;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+}
+
+.close {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.desc {
+  font-size: 13px;
+  line-height: 1.35;
+  opacity: 0.9;
+}

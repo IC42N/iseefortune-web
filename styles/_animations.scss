@@ -1,0 +1,68 @@
+@keyframes blurToFocus {
+  0% {
+    filter: blur(100px);
+    opacity: 0;
+    transform: scale(0.65);
+  }
+  100% {
+    filter: blur(0);
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes overlayFadeIn {
+  to { opacity: 1; }
+}
+
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotate-hue {
+  to {
+    --angle: 360deg;
+  }
+}
+
+@keyframes borderGlow {
+  0%, 100% {
+    filter: brightness(1) saturate(1);
+  }
+  50% {
+    filter: brightness(1.2) saturate(1.5);
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes winPulse {
+  0% { box-shadow: 0 0 6px var(--glow-main); }
+  50% { box-shadow: 0 0 16px var(--glow-main); }
+  100% { box-shadow: 0 0 7px var(--glow-main); }
+}
+
+
+
+@keyframes hand-hover {
+  0% {
+    transform: translateY(0px) rotate(var(--rot));
+  }
+  50% {
+    transform: translateY(-4px) rotate(calc(var(--rot) + 2deg));
+  }
+  100% {
+    transform: translateY(0px) rotate(var(--rot));
+  }
+}
+
+
+@keyframes hand-fade {
+  0%   { opacity: 0.65; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.65; }
+}

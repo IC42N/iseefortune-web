@@ -1,0 +1,52 @@
+@use "../../../styles/mq" as mq;
+@use "../../../styles/common/variables" as v;
+
+.winnerBanner {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 10px;
+  background: rgba(46, 204, 113, 0.12);
+  box-shadow: 0 5px 12px rgba(0,0,0,0.22);
+  border-top: 1px solid #104829;
+  border-bottom: 1px solid #062815;
+  @include mq.up(desktop) {
+    padding: 8px 18px;
+  }
+}
+
+.winnerIcon {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: rgba(46, 204, 113, 0.18);
+  border: 1px solid rgba(46, 204, 113, 0.25);
+  font-size: 18px;
+}
+
+.winnerTitle {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.winnerSub {
+  opacity: 0.9;
+  font-size: 0.7rem;
+}
+
+.winnerAmount {
+  font-weight: 700;
+  color: v.$gold2
+}
+
+.winnerAction {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+

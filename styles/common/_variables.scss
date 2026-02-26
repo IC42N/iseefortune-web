@@ -1,0 +1,139 @@
+$panelBlue: #2d3c55;
+$darkBlue: #182238;
+$blueGrain: #2f5696;
+$purple: #9945ff;
+$pink: #db2777;
+$green: #a3e635;
+$yellow: #fde047;
+$orange: #ffd400;
+$gold: #70633f;
+$gold2: #bfb47b;
+
+$green2: rgb(190 229 190);
+$red2: rgb(227, 166, 166);
+
+$glow: #daf6ff;
+
+//Betting sides
+$sideA: $green;
+$sideB: $pink;
+
+//Correct or Wrong
+$correct: $green2;
+$wrong: $red2;
+
+
+$blueGlowShadow: rgb(10 175 230) 0px 0px 15px, rgb(10 175 230 / 0%) 0px 0px 15px;
+$blueGlowShadowSm: rgb(10 175 230) 0px 0px 8px, rgb(10 175 230 / 0%) 0px 0px 8px;
+$blueGlowShadowXs: rgb(10 175 230) 0px 0px 4px, rgb(10 175 230 / 0%) 0px 0px 5px;
+
+$greenGlowShadowSm: rgb(163 230 53) 0px 0px 7px, rgb(163 230 53 / 0%) 0px 0px 7px;
+$pinkGlowShadowSm: rgb(219 39 119) 0px 0px 8px, rgb(219 39 119 / 0%) 0px 0px 8px;
+
+
+.color-a {
+  color: $sideA;
+}
+.color-b {
+  color: $sideB;
+}
+
+.animated-btn {
+    background-image: linear-gradient(to right, #895cf2 0%, #ffabf4 50%, #895cf2 100%);
+    transition: 0.5s;
+    &:hover {
+        background-position: right center;
+    }
+}
+
+.funBlue {
+    color: #45f6ff;
+}
+.solpurp {
+    color : $purple;
+}
+.solgreen {
+    color: $green;
+}
+
+
+$double: -9px 7px 0px -2px #9f9c96;
+
+
+.transition {
+    -webkit-transition: all 0.4s ease-out;
+    -moz-transition: all 0.4s ease-out;
+    -ms-transition: all 0.4s ease-out;
+    -o-transition: all 0.4s ease-out;
+    transition: all 0.4s ease-out;
+}
+.transition-fast {
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    -ms-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+}
+.transition-xfast {
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    -ms-transition: all 0.1s linear;
+    -o-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+.transition-slow {
+    -webkit-transition: all 0.7s ease-out;
+    -moz-transition: all 0.7s ease-out;
+    -ms-transition: all 0.7s ease-out;
+    -o-transition: all 0.7s ease-out;
+    transition: all 0.7s ease-out;
+}
+
+
+
+//Media Query Variables
+// $large: '64.1em';
+// $large-awkward: '65em';
+// $medium: '64em';
+// $small: '40em';
+// $smallUp: '40.1em';
+// $xsmall: '36em';
+$large1701: '1701px';
+$large1700: '1700px';
+$large1200: '1200px';
+$large-awkward: '1920px';
+$medium: '64em';
+$small: '420px';
+$smallUp: '40.1em';
+//$xsmall: '36em';
+$xsmall: '395px';
+
+@mixin device($media) {
+    @if $media == iphone {
+      @media only screen and (max-width: $xsmall) { @content; }
+    }
+    @if $media == phone {
+      @media only screen and (max-width: $small) { @content; }
+    }
+    @else if $media == tablet {
+      @media only screen and (min-width: $smallUp) and (max-width: $medium) { @content; }
+    }
+    @else if $media == desktop {
+      @media only screen and (min-width: $large1200) { @content; }
+    }
+    @else if $media == desktop-sm {
+      @media only screen and (min-width: $large1200) and (max-width: $large1700) { @content; }
+    }
+    @else if $media == desktop-lg {
+      @media only screen and (min-width: $large1701) { @content; }
+    }
+    @else if $media == tablet-down {
+      @media only screen and (max-width: $medium) { @content; }
+    }
+    @else if $media == tablet-up {
+      @media only screen and (min-width: $smallUp) { @content; }
+    }
+    // @else if $media == awkward {
+    //   @media only screen and (min-width: $medium) and (max-width: $large-awkward) { @content; }
+    // }
+}

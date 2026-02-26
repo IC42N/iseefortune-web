@@ -1,0 +1,99 @@
+@use "@/styles/mq" as mq;
+
+.metaBar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-radius: 10px;
+  overflow: hidden; // important so slants don't spill out
+  //border: 1px solid rgba(212, 179, 106, 0.35);
+  background: linear-gradient(#ffffff0b, #ffffff05);
+  border: 1px solid #ffffff14;
+
+}
+
+.metaSection {
+  text-align: center;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0.8rem 10px;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  background: linear-gradient(#ffffff0f 0%, #000000a6 100%);
+  @include mq.up(desktop) {
+    background: none;
+  }
+
+
+  //&:not(:last-child)::after {
+  //  content: "";
+  //  position: absolute;
+  //  right: 0;       // controls overlap into next section
+  //  width: 2px;        // thickness of the slant
+  //  height: 100%;
+  //  background: rgba(12, 34, 56, 0.56); // gold divider
+  //  transform: skewX(-18deg);
+  //  z-index: 2;
+  //  pointer-events: none;
+  //}
+
+  // ✅ optional: soften the divider with a glow edge
+  &:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    top: -20%;
+    right: -14px;
+    width: 6px;
+    height: 140%;
+    transform: skewX(-18deg);
+    z-index: 1;
+    pointer-events: none;
+    background: rgba(255, 255, 255, 0.06);
+    filter: blur(8px);
+    opacity: 0.35;
+  }
+  .label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #a8b2c3;
+    opacity: 0.6;
+  }
+  .value {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #e6edf6;
+    min-height: 1.4em; // prevents layout jump
+  }
+  .tiers {
+    display: flex;
+    gap: 0.45rem;
+    justify-content: center;
+    .tierBadge {
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      background: #253757;
+      color: white;
+      font-weight: 600;
+      display: grid;
+      place-content: center;
+    }
+  }
+}
+
+
+/* Responsive */
+@media (max-width: 900px) {
+  .metaBar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  // remove slants on wrap layouts (they look weird in multi-row)
+  .metaSection::after,
+  .metaSection::before {
+    display: none;
+  }
+}
+

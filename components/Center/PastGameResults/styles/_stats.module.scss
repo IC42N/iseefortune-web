@@ -1,0 +1,54 @@
+/* ===== Stats Grid ===== */
+.grid {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.four {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.third {
+  grid-template-columns: 3fr 2fr;
+}
+
+
+
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.card {
+  border-radius: 8px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+}
+
+.cardLabel {
+  font-size: 12px;
+  opacity: 0.65;
+  margin-bottom: 6px;
+}
+
+.cardValue {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.cardValueDim {
+  font-size: 18px;
+  font-weight: 650;
+  opacity: 0.35;
+}
+
+.cardSub {
+  margin-left: 8px;
+  font-size: 12px;
+  opacity: 0.6;
+  font-weight: 500;
+}

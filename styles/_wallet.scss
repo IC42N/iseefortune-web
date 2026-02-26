@@ -1,0 +1,99 @@
+@use "variables" as v;
+@use "@/styles/mq" as mq;
+
+.wallet-adapter-dropdown {
+  width: 100%;
+}
+
+.wallet-adapter-button-trigger {
+  position: relative;
+  overflow: hidden;
+  background: #7720ec;
+  height: 34px;
+  padding: 0 20px;
+  text-transform: uppercase;
+  font-size: 13px;
+  text-shadow: 0 1px 1px #361045;
+  transition: background-color 200ms ease;
+  display: flex;
+  place-items: center;
+  place-content: center;
+  width: 100%;
+  @include mq.up(desktop) {
+    display: flex;
+  }
+}
+
+.wallet-adapter-button-trigger::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;              // start completely off the left
+  width: 150%;              // wide enough to fully sweep
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 10%,
+    rgba(255, 255, 255, 0.25) 50%,
+    transparent 80%
+  );
+  transform: skewX(-20deg);
+  pointer-events: none;
+}
+
+.wallet-adapter-button-trigger:hover::after {
+  left: 150%;               // exit fully off the right
+  transition: left 700ms ease;
+}
+
+.wallet-adapter-button:not([disabled]):hover {
+  background-color: #7223dc;
+}
+
+.wallet-adapter-modal.wallet-adapter-modal-fade-in {
+  background:
+          radial-gradient(1200px 800px at 20% 20%, rgba(118, 255, 221, 0.12), transparent 60%),
+          radial-gradient(900px 700px at 80% 30%, rgba(170, 120, 255, 0.14), transparent 55%),
+          radial-gradient(900px 700px at 50% 90%, rgba(255, 161, 90, 0.12), transparent 55%),
+          rgba(0, 0, 0, 0.35);
+  @include mq.up(desktop) {
+    backdrop-filter: blur(8px);
+  }
+}
+
+.wallet-adapter-modal-wrapper {
+  border: 2px solid v.$glow;
+  box-shadow: v.$blueGlowShadow;
+}
+.wallet-adapter-modal-title {
+  text-align: center;
+  color: #fff;
+  margin: 0;
+  padding: 32px 80px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 30px;
+}
+
+.wallet-adapter-button:not([disabled]):hover {
+  background-color: #496169;
+  transition: all 0.6s ease;
+}
+.wallet-adapter-button-start-icon {
+  margin-right: 8px;
+}
+
+@media (max-width: 901px) {
+  .wallet-adapter-button-start-icon {
+    margin-right: 0;
+  }
+  .wallet-adapter-button-trigger {
+    padding: 0 15px;
+  }
+
+  .wallet-adapter-button-end-icon, .wallet-adapter-button-start-icon, .wallet-adapter-button-end-icon img, .wallet-adapter-button-start-icon img {
+    border-radius: 100%;
+  }
+
+}

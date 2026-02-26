@@ -1,0 +1,107 @@
+@use "../../../styles/common/variables" as v;
+
+.resultsWrap {
+  margin-top: 146px;
+  display: grid;
+  gap: 38px;
+}
+.resultHeadline {
+  --headline: #eee;
+  text-align: center;
+  font-size: 1.4rem;
+  color: var(--headline);
+  text-shadow: 0 1px 3px #000;
+}
+
+.resultsLabel {
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.resultsBody {
+  display: grid;
+  gap: 3px;
+  text-align: center;
+  opacity: 0.95;
+  line-height: 1.3;
+}
+.subtle {
+  opacity: 0.7;
+}
+.playerPayout {
+  font-weight: 700;
+  color: v.$glow;
+  font-size: 1.6rem;
+}
+.claimMessage {
+  margin-top: 10px;
+  font-size: 10px;
+  opacity: 0.5;
+}
+
+
+.modal--win {
+  --headline: #BEE5BEFF;
+}
+
+.modal--lose {
+  --headline: #c74343;
+}
+
+
+
+
+.rolloverHeadline {
+  color: v.$gold2;
+  font-size: 1.5rem;
+  text-shadow: 1px 1px 1px #000;
+}
+.rolloverBody {
+  margin: 10px 0;
+  font-size: 14px;
+}
+.rolloverBanner {
+  margin-top: 10px;
+  padding: 0 14px 14px;
+  font-weight: 800;
+}
+.rolloverMeta {
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
+
+
+
+.continueBtn {
+  border-radius: 10px;
+  padding: 8px 10px;
+
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: white;
+
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+
+  transition: transform 120ms ease, opacity 120ms ease, background 120ms ease, border-color 120ms ease;
+}
+
+.continueBtn:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.continueBtn:active {
+  transform: translateY(0px);
+}
+
+.continueBtnDisabled {
+  opacity: 0.35;
+  pointer-events: none;
+}

@@ -1,0 +1,291 @@
+@use "@/styles/mq" as mq;
+
+.predictions {
+  display: grid;
+  gap: 12px;
+  padding: 10px 0;
+  max-height: 360px;
+  overflow-y: auto;        /* still scrollable */
+  overscroll-behavior: contain;
+
+  /* Firefox */
+  scrollbar-width: none;
+
+  /* IE / old Edge */
+  -ms-overflow-style: none;
+
+  @include mq.up(desktop) {
+    mask-image: linear-gradient(
+                    to bottom,
+                    transparent,
+                    black 16px,
+                    black calc(100% - 16px),
+                    transparent
+    );
+
+    -webkit-mask-image: linear-gradient(
+                    to bottom,
+                    transparent,
+                    black 16px,
+                    black calc(100% - 16px),
+                    transparent
+    );
+  }
+
+}
+
+/* Chrome, Safari, iOS */
+.predictions::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+
+.eachPredictionItem {
+  position: relative;
+  border-radius: 10px; // a bit more bubble
+  overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  transition: transform 180ms ease, background 180ms ease, border-color 180ms ease, box-shadow 220ms ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    background: rgba(255, 255, 255, 0.07);
+  }
+}
+//.eachPredictionItem[data-state="open"] {
+//  box-shadow: 0 18px 45px rgba(0,0,0,0.35);
+//}
+.eachPredictionItem[data-open="true"] {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.075);
+}
+
+//.eachPredictionItem::after {
+//  content: "";
+//  position: absolute;
+//  inset: 0;
+//  pointer-events: none;
+//  opacity: 0;
+//  background: linear-gradient(
+//    110deg,
+//    transparent 0%,
+//    rgba(255,255,255,0.06) 45%,
+//    rgba(255,255,255,0.12) 50%,
+//    rgba(255,255,255,0.06) 55%,
+//    transparent 100%
+//  );
+//  transform: translateX(-40%) translateY(0);
+//}
+//
+//.eachPredictionItem[data-open="true"]::after {
+//  opacity: 1;
+//  animation: shineSweep 900ms ease-out 1;
+//}
+//
+//@keyframes shineSweep {
+//  from { transform: translateX(-40%); }
+//  to   { transform: translateX(40%); }
+//}
+
+
+.list {
+  display: grid;
+  gap: 5px;
+}
+
+.rowTrigger {
+  all: unset;
+  display: block;
+  width: 100%;
+  cursor: pointer;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+
+}
+
+.rowLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.numberPill {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+
+  font-weight: 800;
+  color: rgba(10, 12, 18, 0.92);
+
+  background: linear-gradient(135deg, rgba(118, 255, 221, 0.95), rgba(170, 120, 255, 0.90));
+  box-shadow: 0 10px 24px rgba(170, 120, 255, 0.10);
+}
+
+.rowMain {
+  min-width: 0;
+}
+
+.rowTitle {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.90);
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rowSub {
+  color: #fff9;
+  margin-top: 0;
+  font-size: 11px;
+  opacity: 0.7;
+  font-weight: 500;
+}
+
+.rowRight {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.amount {
+  font-size: 14px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.result {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.60);
+}
+.won {
+  color: #3bd671;
+}
+
+.lost {
+  color: #ff5a5a;
+}
+
+.pending {
+  color: #f5c451;
+}
+
+.loading {
+  color: #bbb;
+  letter-spacing: 0.08em;
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+.inProgress { color: #f4c33c }
+.notFound { opacity: 0.7; font-style: italic; }
+
+@keyframes pulse {
+  0%   { opacity: 0.35; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.35; }
+}
+
+
+
+@media (prefers-reduced-motion: reduce) {
+  .loading,
+  .loadingDots,
+  .loadingShimmer {
+    animation: none;
+  }
+}
+
+
+.panel {
+  background: #0a1d2e;
+}
+
+
+.detailsLoading, .detailsError, .detailsHint {
+  padding: 16px 18px;
+  font-size: 0.8rem;
+}
+
+.detailsGrid {
+  display: grid;
+  font-size: 0.8rem;
+}
+
+.detailBox {
+  padding: 16px 26px;
+}
+
+.detailRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  text-shadow: 1px 1px 1px #000;
+}
+
+.detailLabel {
+  opacity: 0.7;
+}
+
+.detailValue {
+  font-weight: 600;
+}
+
+
+.panelMotion {
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+
+
+@media (max-width: 520px) {
+  .row { align-items: stretch; }
+  .rowRight { text-align: left; }
+}
+
+.panelMotion {
+  will-change: height, transform, opacity, filter;
+  transform-origin: top;
+}
+
+
+.detailValueWithCopy {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.copyBtn {
+  background: none;
+  border: none;
+  padding: 2px;
+  cursor: pointer;
+  opacity: 0.65;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover { opacity: 1; }
+  &:active { transform: scale(0.92); }
+}
+
+.copyIcon {
+  display: block;
+}

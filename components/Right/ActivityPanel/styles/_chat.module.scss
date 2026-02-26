@@ -1,0 +1,45 @@
+/* =========================
+   Chat (standard look)
+   ========================= */
+
+.chatRow {
+  border-radius: 12px;
+  margin: 0 6px;
+  padding: 6px 6px;
+  &:hover {
+    background: rgba(255, 255, 255, 0.03);
+  }
+}
+
+.chatMeta {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  opacity: 0.92;
+}
+
+.chatUser {
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.2px;
+  opacity: 0.6;
+
+}
+
+.chatTime {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.chatBubble {
+  display: inline-flex;
+  max-width: 92%;
+}
+
+.chatText {
+  font-size: 13px;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.88);
+  white-space: pre-wrap;
+  word-break: break-word;
+}

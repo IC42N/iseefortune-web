@@ -1,0 +1,30 @@
+.emptyOrb {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  margin-bottom: 18px;
+
+  background:
+          radial-gradient(
+                          circle at 30% 30%,
+                          rgba(120, 160, 255, 0.35),
+                          rgba(20, 30, 60, 0.85) 65%
+          );
+
+  box-shadow:
+          0 0 22px rgba(120, 160, 255, 0.25),
+          inset 0 0 18px rgba(255, 255, 255, 0.08);
+
+  animation: orbPulse 3.4s ease-in-out infinite;
+}
+
+@keyframes orbPulse {
+  0%, 100% {
+    transform: scale(0.95);
+    opacity: 0.75;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}

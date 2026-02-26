@@ -1,0 +1,86 @@
+@use "../../../styles/mq" as mq;
+
+.main {
+  display: flex;
+  gap: 14px;
+  padding: 0 10px 10px;
+  width: 100%;
+}
+
+/* Desktop fullscreen mode */
+@media (min-width: 901px) {
+  .main {
+    height: calc(100dvh - 115px); /* adjust to your AppHeader height */
+  }
+}
+
+
+/* top-level classes (not nested) */
+.left {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;    /* critical for flex children */
+  min-height: 0;   /* critical for scroll areas */
+  @include mq.up(desktop) {
+    gap: 8px;
+  }
+}
+
+.center {
+  flex: 3;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.centerBottom {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+  flex-direction: column;
+  gap: 8px;
+  @include mq.up(desktop) {
+    justify-content: space-between;
+    flex-direction: row;
+  }
+}
+.cbLeft {
+  width: auto;
+}
+.cbRight {
+  flex: auto;
+}
+
+
+.right {
+  flex: 2;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Mobile collapse */
+@media (max-width: 900px) {
+  .main {
+    flex-direction: column;
+    height: auto;
+    overflow: visible;
+  }
+
+  /* Optional: keep chat visible but below */
+  .right {
+    order: 3;
+  }
+}
+
+/* Optional: hide chat on very small screens */
+@media (max-width: 600px) {
+  .right {
+    display: none;
+  }
+}

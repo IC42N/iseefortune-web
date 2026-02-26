@@ -1,0 +1,48 @@
+@use "@/styles/mq" as mq;
+
+
+.topStatsCard {
+  border-radius: 8px;
+  padding: 8px 10px;
+  text-align: center;
+  color: #0F1724;
+  min-width: auto;
+  flex: 1;
+  @include mq.up(desktop) {
+    min-width: 110px;
+  }
+}
+
+.statLabel {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  opacity: 0.72;
+  font-weight: 700;
+  @include mq.up(desktop) {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+  }
+}
+
+.statValue {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* Tones */
+.success {
+  background: #A7DCA1;
+}
+
+.danger {
+  background: #B45A5A;
+}
+
+.warning {
+  background: #D8D28E;
+}
+
+.info {
+  background: #8FA3B8;
+}

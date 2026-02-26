@@ -1,0 +1,312 @@
+@use "@/styles/mq" as mq;
+@use "@/styles/common/variables" as v;
+
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  height: 100%;
+  border-radius: 8px;
+  background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.06) 0%,
+      rgba(255, 255, 255, 0.035) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  overflow: hidden;
+
+  /* subtle depth */
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Desktop: panel consumes remaining height so list can scroll */
+@media (min-width: 901px) {
+  .panel {
+    flex: 1;
+  }
+}
+
+.header {
+  display: flex;
+  gap: 6px;
+  padding: 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(0, 0, 0, 0.18);
+  @include mq.up(desktop) {
+    backdrop-filter: blur(8px);
+  }
+}
+
+.tab {
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+  &:hover {
+    transform: translateY(-1px);
+    background: linear-gradient(#5383bda8, #0e162500);
+    border-color: rgba(25, 25, 25, 0.16);
+  }
+  &:active {
+    transform: translateY(0px);
+    background: linear-gradient(rgba(127, 148, 173, 0.22), rgba(14, 22, 37, 0));
+  }
+}
+
+.active {
+  background: linear-gradient(#5383bda8, #0e162500);
+  border-color: rgba(0, 0, 0, 0.22);
+  color: #fff;
+}
+
+.list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+  @include mq.up(desktop) {
+    max-height: none;
+  }
+}
+
+
+/* ===========================
+   Sleek dark scrollbar
+   =========================== */
+
+.list {
+  scrollbar-width: thin;                 /* Firefox */
+  scrollbar-color: rgba(255,255,255,0.25) rgba(255,255,255,0.04);
+}
+
+/* Chromium / WebKit */
+.list::-webkit-scrollbar {
+  width: 7px;
+}
+
+.list::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+}
+
+.list::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+                  180deg,
+                  rgba(255,255,255,0.25),
+                  rgba(255,255,255,0.15)
+  );
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+/* Hover = subtle glow */
+.list::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+                  180deg,
+                  rgba(255,255,255,0.35),
+                  rgba(255,255,255,0.22)
+  );
+}
+
+/* Row now looks like a modern "stat item" */
+.row {
+  --hue: 50; /* fallback */
+
+  position: relative;
+
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* fixed number + fixed amount */
+  align-items: center;
+
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 4px;
+
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+
+  /* subtle colored tint */
+  box-shadow:
+          0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+  transition: transform 140ms ease, border-color 140ms ease;
+
+  @include mq.up(desktop) {
+    padding: 10px 30px;
+    grid-template-columns: 1fr 1fr auto;
+  }
+
+}
+
+/* left color rail */
+.row::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1px;
+  bottom: 1px;
+  width: 1px;
+  border-radius: 999px;
+
+  background: linear-gradient(
+    180deg,
+    hsla(var(--hue), 95%, 70%, 0.85),
+    hsla(var(--hue), 95%, 55%, 0.35)
+  );
+
+  box-shadow: 0 0 18px hsla(var(--hue), 95%, 60%, 0.22);
+  opacity: 0.85;
+}
+
+.row::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  /* the tint */
+  background: linear-gradient(
+      90deg,
+      hsla(var(--hue), 95%, 55%, 0.22),
+      hsla(var(--hue), 95%, 55%, 0.04) 55%,
+      hsla(var(--hue), 95%, 55%, 0.10)
+  );
+
+  /* keeps it dark + mysterious */
+
+  opacity: 0.85;
+  @include mq.up(desktop) {
+    mix-blend-mode: screen;
+  }
+}
+
+.row > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* hover = premium */
+.row:hover {
+  opacity: 0.85;
+}
+
+.player {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2px;
+  min-width: 0;
+}
+
+.pk {
+  color: hsla(var(--hue), 95%, 70%, 0.85);
+  font-size: 13px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 80px;
+}
+
+.number {
+  text-align: center;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 0.4px;
+
+  color: hsla(var(--hue), 95%, 72%, 0.95);
+  text-shadow: 0 0 14px hsla(var(--hue), 95%, 60%, 0.22);
+
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+  @include mq.up(desktop) {
+    font-size: 18px;
+  }
+}
+
+/* Make amount feel separated + "fun" */
+.amount {
+  width: 80px;        /* matches grid column */
+  text-align: right;
+  font-weight: 400;
+  opacity: 0.82;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+  font-size: 0.9rem;
+}
+.amountSub {
+  font-size: 0.8rem;
+  opacity: 0.6;
+  line-height: 1;
+}
+
+/* Empty state */
+.emptyState {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 40px 20px;
+  text-align: center;
+  opacity: 0.85;
+  height: 100%;
+  min-height: 400px;
+  @include mq.up(desktop) {
+    min-height: auto;
+  }
+}
+.emptyStateInner {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  @include mq.up(desktop) {
+    gap: 12px;
+  }
+}
+
+
+.emptyTitle {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  margin-bottom: 2px;
+  @include mq.up(desktop) {
+    font-size: 20px;
+  }
+}
+
+.emptySub {
+  font-size: 13px;
+  opacity: 0.6;
+}
+
+/* Loading veil */
+.veil {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.42);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include mq.up(desktop) {
+    backdrop-filter: blur(10px);
+  }
+}
+
+.veilText {
+  font-size: 15px;
+  font-weight: 700;
+  opacity: 0.92;
+}

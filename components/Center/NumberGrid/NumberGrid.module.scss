@@ -1,0 +1,223 @@
+@use "../../../styles/variables" as v;
+@use "../../../styles/mq" as mq;
+
+.root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  @include mq.up(desktop) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.cell {
+  --hue: 50;
+  position: relative;
+  border-radius: 6px;
+  padding: 14px 24px;
+  background:
+    radial-gradient(120% 120% at 20% 10%, hsla(var(--hue), 90%, 60%, 0.18), rgba(0,0,0,0) 60%),
+    rgba(255, 255, 255, 0.06);
+
+  border: 1px solid hsla(var(--hue), 90%, 65%, 0.22);
+  min-height: 110px;
+  display: flex;
+  flex-direction: column; // ✅ important
+  justify-content: flex-start; // ✅ important
+
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  transition: border-color 160ms ease, transform 160ms ease;
+  @include mq.up(desktop) {
+    backdrop-filter: blur(10px);
+    min-height: 118px;
+    padding: 20px 24px;
+  }
+}
+
+.cell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0.15;
+  background: url("/SVG/ball-2.svg") no-repeat center center / contain;
+}
+
+.cell:hover {
+  border-color: hsla(var(--hue), 90%, 70%, 0.34);
+  transform: translateY(-1px);
+}
+
+.topRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.bets {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-right: 4px;
+}
+
+.predictionsLabel {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.predictionsCount {
+  color: v.$gold2;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+
+.num {
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+
+  /* NEW: hue coloring + glow */
+  color: hsla(var(--hue), 95%, 72%, 0.95);
+  text-shadow: 0 0 18px hsla(var(--hue), 95%, 60%, 0.22);
+}
+
+.meta {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bets {
+  font-size: 14px;
+  opacity: 0.85;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.amount {
+  font-size: 13px;
+  opacity: 0.55;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.rollover {
+  border-color: rgba(212, 179, 106, 0.35);
+  box-shadow: 0 0 0 1px rgba(212, 179, 106, 0.10) inset;
+}
+
+.bump {
+  animation: bump 420ms ease-out;
+}
+
+.bump::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 6px;
+  pointer-events: none;
+  opacity: 0;
+  box-shadow: 0 0 24px hsla(var(--hue), 95%, 60%, 0.28);
+  animation: bumpGlow 420ms ease-out;
+}
+
+@keyframes bumpGlow {
+  0%   { opacity: 0; }
+  25%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes bump {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+.skeleton {
+  opacity: 0.35;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+
+.meter {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.10);
+  overflow: hidden;
+}
+
+.meterFill {
+  height: 100%;
+  border-radius: 999px;
+  background: hsla(var(--hue), 90%, 60%, 0.9);
+  transition: width 220ms ease;
+}
+
+.share {
+  font-size: 12px;
+  opacity: 0.55;
+  margin-top: 0;
+  margin-bottom: 3px;
+}
+
+
+// BADGE ANIMATION
+
+.badges {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: absolute;
+  top: 3px;
+  left: 0;
+  width: 100%;
+}
+
+.badge {
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(231, 49, 225, 0.34);
+  animation: badgeIn 180ms ease-out;
+  transform-origin: 50% 60%;
+}
+
+.badgeAlt {
+  background: hsla(var(--hue), 90%, 60%, 0.14);
+  border: 1px solid hsla(var(--hue), 90%, 65%, 0.30);
+}
+
+@keyframes badgeIn {
+  from { transform: scale(0.92); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .badge { animation: none; }
+}

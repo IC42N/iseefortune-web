@@ -1,0 +1,146 @@
+@use "sass:math";
+@use "sass:string";
+@use "@/styles/mq" as mq;
+
+$star-color: #b99d05;
+
+$space-height-desktop: 600px;
+$space-height-mobile: 920px;
+
+$spread-desktop: 2000;
+$spread-mobile: 500;
+
+$stars-small-count-desktop: 700;
+$stars-medium-count-desktop: 200;
+$stars-big-count-desktop: 100;
+
+$stars-small-count-mobile: 50;
+$stars-medium-count-mobile: 30;
+$stars-big-count-mobile: 10;
+
+@function multiple-box-shadow($count, $spread) {
+  $value: "#{math.random($spread)}px #{math.random($spread)}px #{$star-color}";
+  @for $i from 2 through $count {
+    $value: "#{$value}, #{math.random($spread)}px #{math.random($spread)}px #{$star-color}";
+  }
+  @return string.unquote($value);
+}
+
+// precompute once (compile-time)
+$shadows-small-mobile:  multiple-box-shadow($stars-small-count-mobile, $spread-mobile);
+$shadows-medium-mobile: multiple-box-shadow($stars-medium-count-mobile, $spread-mobile);
+$shadows-big-mobile:    multiple-box-shadow($stars-big-count-mobile, $spread-mobile);
+
+$shadows-small-desktop:  multiple-box-shadow($stars-small-count-desktop, $spread-desktop);
+$shadows-medium-desktop: multiple-box-shadow($stars-medium-count-desktop, $spread-desktop);
+$shadows-big-desktop:    multiple-box-shadow($stars-big-count-desktop, $spread-desktop);
+
+// --------------------
+// Mobile baseline
+// --------------------
+.stars,
+.stars2,
+.stars3 {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: transparent;
+  overflow: hidden;
+}
+
+.stars {
+  width: 1px;
+  height: 1px;
+  box-shadow: $shadows-small-mobile;
+  animation: animStarMobile 40s linear infinite;
+}
+
+.stars2 {
+  width: 2px;
+  height: 2px;
+  box-shadow: $shadows-medium-mobile;
+  animation: animStarMobile 80s linear infinite;
+}
+
+.stars3 {
+  width: 3px;
+  height: 3px;
+  box-shadow: $shadows-big-mobile;
+  animation: animStarMobile 120s linear infinite;
+}
+
+@keyframes animStarMobile {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-$space-height-mobile); }
+}
+
+// --------------------
+// Desktop upgrade
+// --------------------
+@include mq.up(desktop) {
+  .stars,
+  .stars2,
+  .stars3 {
+    will-change: transform;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: $space-height-desktop;
+      left: 0;
+      background: transparent;
+    }
+  }
+
+  .stars {
+    box-shadow: $shadows-small-desktop;
+    animation: animStarDesktop 30s linear infinite;
+
+    &::after {
+      width: 1px;
+      height: 1px;
+      box-shadow: $shadows-small-desktop;
+    }
+  }
+
+  .stars2 {
+    box-shadow: $shadows-medium-desktop;
+    animation: animStarDesktop 60s linear infinite;
+
+    &::after {
+      width: 2px;
+      height: 2px;
+      box-shadow: $shadows-medium-desktop;
+    }
+  }
+
+  .stars3 {
+    box-shadow: $shadows-big-desktop;
+    animation: animStarDesktop 90s linear infinite;
+
+    &::after {
+      width: 3px;
+      height: 3px;
+      box-shadow: $shadows-big-desktop;
+    }
+  }
+
+  @keyframes animStarDesktop {
+    from { transform: translateY(0); }
+    to   { transform: translateY(-$space-height-desktop); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stars,
+  .stars2,
+  .stars3 {
+    animation: none !important;
+  }
+
+  .stars::after,
+  .stars2::after,
+  .stars3::after {
+    content: none !important;
+  }
+}

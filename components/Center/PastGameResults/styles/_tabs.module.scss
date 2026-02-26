@@ -1,0 +1,55 @@
+.tabsHeader {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.tabBtn {
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+
+  padding: 8px 12px;
+  border-radius: 999px;
+
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.2px;
+
+  color: rgba(255, 255, 255, 0.72);
+  background: transparent;
+
+  transition: transform 120ms ease, background 160ms ease, color 160ms ease;
+
+  &[data-active="true"] {
+    color: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow:
+            0 10px 22px rgba(0, 0, 0, 0.28),
+            0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+  }
+
+  &:active { transform: translateY(1px); }
+}
+
+.tabPanel {
+  padding: 0 0 12px;
+}
+
+.winnersTab { }
+.verifyTab {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

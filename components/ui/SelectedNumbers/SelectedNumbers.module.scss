@@ -1,0 +1,65 @@
+.successNumbers {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  &[data-align="start"] {
+    justify-content: flex-start;
+  }
+
+  &[data-align="end"] {
+    justify-content: flex-end;
+  }
+
+  &[data-size="xs"] {
+    --icon-size: 20px;
+    --font-size: 11px;
+  }
+
+  &[data-size="sm"] {
+    --icon-size: 28px;
+    --font-size: 14px;
+  }
+
+  &[data-size="md"] {
+    --icon-size: 34px;
+    --font-size: 18px;
+  }
+
+  // Most common size
+  &[data-size="lg"] {
+    --icon-size: 54px;
+    --font-size: 22px;
+  }
+
+  &[data-size="xl"] {
+    --icon-size: 60px;
+    --font-size: 24px;
+  }
+}
+
+.successIcon {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+
+  background:
+          radial-gradient(120% 120% at 30% 20%, hsla(var(--hue), 95%, 70%, calc(var(--intensity) * .45)), hsla(var(--hue), 90%, 45%, calc(var(--intensity) * .22)));
+
+  box-shadow:
+    0 16px 44px rgba(0, 0, 0, 0.45),
+    0 0 34px hsla(var(--hue), 95%, 60%, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -8px 18px rgba(0, 0, 0, 0.25);
+
+  border: 1px solid hsla(var(--hue), 90%, 70%, 0.22);
+}
+.successIconInner {
+  font-size: var(--font-size);
+  font-weight: 900;
+  line-height: 1;
+  color: rgba(255,255,255,0.92);
+}

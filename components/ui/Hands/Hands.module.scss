@@ -1,0 +1,35 @@
+@use "../../../styles/mq" as mq;
+
+.hands {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.handBox {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  @include mq.up(desktop) {
+    width: 120px;
+  }
+}
+
+.leftHand {
+  top: 9px;
+  left: 50px;
+  rotate: 60deg;
+  @include mq.up(desktop) {
+    left: 92px;
+  }
+}
+.rightHand {
+  right: 50px;
+  top: 9px;
+  rotate: -60deg;
+  @include mq.up(desktop) {
+    right: 92px;
+  }
+}
